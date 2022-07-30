@@ -45,7 +45,6 @@ public class Expense {
 		super();
 	}
 	
-	
 
 	public Expense(String expense, String vendor, Double amount, String description) {
 		this.expense = expense;

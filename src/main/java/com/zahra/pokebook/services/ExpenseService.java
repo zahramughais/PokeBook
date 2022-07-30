@@ -3,6 +3,8 @@ package com.zahra.pokebook.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
 
 import com.zahra.pokebook.models.Expense;
@@ -33,4 +35,14 @@ public class ExpenseService {
             return null;
         }
     }
+    
+    public Expense updateExpense(Long id, String expense, String vendor, Double amount, String description) {
+    	Expense e = findExpense(id);
+    	e.setExpense(expense);
+    	e.setVendor(vendor);
+    	e.setAmount(amount);
+    	e.setDescription(description);
+    	return expenseRepository.save(e);
+    }
+
 }

@@ -1,38 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
-    
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+    <%@ page isErrorPage="true" %>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Read Share</title>
+<title>Edit My Task</title>
 </head>
 <body>
-<h1>PokeBook</h1>
-<table>
-    <thead>
-        <tr>
-            <th>Expense</th>
-            <th>Vendor</th>
-            <th>Amount</th>
-            <th>Edit</th>
-        </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="expense" items="${expenses}">    
-        <tr>
-            <td><c:out value="${expense.expense}"/></td>
-            <td><c:out value="${expense.vendor}"/></td>
-            <td><c:out value="${expense.amount}"/>$</td>
-            <td><a href="/expenses/edit/${expense.id}">edit</a></td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+<div>
+    <h1>Edit Expense</h1>
+    <a href="/expenses">Go Back</a>
+</div>
 <h2>Track an expense:</h2>
-<form:form action="/expenses/new" method="post" modelAttribute="e">
+<form:form action="/expenses/edit/${e.id}" method="post" modelAttribute="e">
+<input type="hidden" name="_method" value="put">
     <p>
         <form:label path="expense">Expense Name:</form:label>
         <form:errors path="expense"/>
