@@ -17,16 +17,22 @@
             <th>Expense</th>
             <th>Vendor</th>
             <th>Amount</th>
-            <th>Edit</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
     <c:forEach var="expense" items="${expenses}">    
         <tr>
-            <td><c:out value="${expense.expense}"/></td>
+            <td><a href="/expenses/${expense.id}"><c:out value="${expense.expense}"/></a></td>
             <td><c:out value="${expense.vendor}"/></td>
             <td><c:out value="${expense.amount}"/>$</td>
             <td><a href="/expenses/edit/${expense.id}">edit</a></td>
+            <td>
+                <form action="/expenses/delete/${expense.id}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
@@ -46,7 +52,7 @@
     <p>
         <form:label path="amount">Amount:</form:label>
         <form:errors path="amount"/>
-        <form:input type="number" path="amount"/>
+        <form:input type="number" step="0.01" path="amount"/>
     </p>
     <p>
         <form:label path="description">Description:</form:label>

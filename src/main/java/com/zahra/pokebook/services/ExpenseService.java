@@ -45,4 +45,10 @@ public class ExpenseService {
     	return expenseRepository.save(e);
     }
 
+    public void deleteExpense(Long id) {
+    	Expense expense = findExpense(id);
+    	if(expense != null) {    		
+    		expenseRepository.deleteById(id);
+    	}
+    }
 }
